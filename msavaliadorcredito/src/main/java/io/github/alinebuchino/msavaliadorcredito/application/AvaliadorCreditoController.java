@@ -24,5 +24,6 @@ public class AvaliadorCreditoController {
     public ResponseEntity<SituacaoCliente> consultaSituacaoCliente(@RequestParam("cpf") String cpf){
         SituacaoCliente situacaoCliente = avaliadorCreditoService.obterSituacaoCliente(cpf);
 
+        return ResponseEntity.ok(situacaoCliente);
     }
 }
