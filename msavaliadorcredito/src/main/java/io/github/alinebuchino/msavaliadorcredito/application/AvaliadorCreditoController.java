@@ -1,5 +1,6 @@
 package io.github.alinebuchino.msavaliadorcredito.application;
 
+import io.github.alinebuchino.msavaliadorcredito.domain.model.CartoesCliente;
 import io.github.alinebuchino.msavaliadorcredito.domain.model.SituacaoCliente;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
