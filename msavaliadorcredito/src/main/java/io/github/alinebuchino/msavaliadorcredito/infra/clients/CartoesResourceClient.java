@@ -1,5 +1,6 @@
 package io.github.alinebuchino.msavaliadorcredito.infra.clients;
 
+import io.github.alinebuchino.msavaliadorcredito.domain.model.Cartao;
 import io.github.alinebuchino.msavaliadorcredito.domain.model.CartoesCliente;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -13,4 +14,7 @@ public interface CartoesResourceClient {
 
     @GetMapping(params = "cpf")
     ResponseEntity<List<CartoesCliente>> cartoesClientes(@RequestParam("cpf") String cpf);
+
+    @GetMapping(params = "renda")
+    ResponseEntity<List<Cartao>> cartoesRendaAte(@RequestParam("renda") Long renda);
 }
