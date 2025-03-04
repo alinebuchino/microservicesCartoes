@@ -34,6 +34,11 @@
 			<version>3.1.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+
 		<!-- Dependência do banco de dados, se necessário (exemplo usando H2) -->
 		<dependency>
 			<groupId>com.h2database</groupId>

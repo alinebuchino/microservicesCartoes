@@ -1,7 +1,7 @@
-package io.github.alinebuchino.msavaliadorcredito.infra.clients;
+package io.github.alinebuchino.msavaliadorcredito.application.infra.clients;
 
-import io.github.alinebuchino.msavaliadorcredito.domain.model.Cartao;
-import io.github.alinebuchino.msavaliadorcredito.domain.model.CartoesCliente;
+import io.github.alinebuchino.msavaliadorcredito.application.model.Cartao;
+import io.github.alinebuchino.msavaliadorcredito.application.model.CartoesCliente;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

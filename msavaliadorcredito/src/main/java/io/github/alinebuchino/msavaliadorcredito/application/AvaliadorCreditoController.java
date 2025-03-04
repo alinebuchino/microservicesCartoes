@@ -2,9 +2,9 @@ package io.github.alinebuchino.msavaliadorcredito.application;
 
 import io.github.alinebuchino.msavaliadorcredito.application.exceptions.DadosClientesNotFoundException;
 import io.github.alinebuchino.msavaliadorcredito.application.exceptions.ErroComunicacaoMicroservicesException;
-import io.github.alinebuchino.msavaliadorcredito.domain.model.DadosAvaliacao;
-import io.github.alinebuchino.msavaliadorcredito.domain.model.RetornoAvaliacaoCliente;
-import io.github.alinebuchino.msavaliadorcredito.domain.model.SituacaoCliente;
+import io.github.alinebuchino.msavaliadorcredito.application.model.DadosAvaliacao;
+import io.github.alinebuchino.msavaliadorcredito.application.model.RetornoAvaliacaoCliente;
+import io.github.alinebuchino.msavaliadorcredito.application.model.SituacaoCliente;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

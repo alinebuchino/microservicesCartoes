@@ -1,28 +1,27 @@
-//package io.github.cursodsousa.mscartoes.infra.mqueue;
-//
-//import com.fasterxml.jackson.core.JsonProcessingException;
-//import com.fasterxml.jackson.databind.ObjectMapper;
-//import io.github.cursodsousa.mscartoes.domain.Cartao;
-//import io.github.cursodsousa.mscartoes.domain.ClienteCartao;
-//import io.github.cursodsousa.mscartoes.domain.DadosSolicitacaoEmissaoCartao;
-//import io.github.cursodsousa.mscartoes.infra.repository.CartaoRepository;
-//import io.github.cursodsousa.mscartoes.infra.repository.ClienteCartaoRepository;
-//import lombok.RequiredArgsConstructor;
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.amqp.rabbit.annotation.RabbitListener;
-//import org.springframework.messaging.handler.annotation.Payload;
-//import org.springframework.stereotype.Component;
-//
-//@Component
-//@RequiredArgsConstructor
-//@Slf4j
-//public class EmissaoCartaoSubscriber {
-//
-//    private final CartaoRepository cartaoRepository;
-//    private final ClienteCartaoRepository clienteCartaoRepository;
-//
-//    @RabbitListener(queues = "${mq.queues.emissao-cartoes}")
-//    public void receberSolicitacaoEmissao(@Payload String payload){
+package io.github.alinebuchino.mscartoes.infra.mqueue;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.alinebuchino.mscartoes.domain.Cartao;
+import io.github.alinebuchino.mscartoes.domain.ClienteCartao;
+import io.github.alinebuchino.mscartoes.domain.DadosSolicitacaoEmissaoCartao;
+import io.github.alinebuchino.mscartoes.infra.repository.CartaoRepository;
+import io.github.alinebuchino.mscartoes.infra.repository.ClienteCartaoRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.stereotype.Component;
+
+@Component
+@RequiredArgsConstructor
+@Slf4j
+public class EmissaoCartaoSubscriber {
+
+    private final CartaoRepository cartaoRepository;
+    private final ClienteCartaoRepository clienteCartaoRepository;
+
+    @RabbitListener(queues = "${mq.queues.emissao-cartoes}")
+    public void receberSolicitacaoEmissao(@Payload String payload){
 //        try {
 //            var mapper = new ObjectMapper();
 //
@@ -39,5 +38,7 @@
 //        }catch (Exception e){
 //            log.error("Erro ao receber solicitacao de emissao de cartao: {} ", e.getMessage());
 //        }
-//    }
-//}
+
+        System.out.println(payload);
+    }
+}

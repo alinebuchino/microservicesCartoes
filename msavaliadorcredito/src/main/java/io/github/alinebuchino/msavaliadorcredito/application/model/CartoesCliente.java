@@ -1,4 +1,4 @@
-package io.github.alinebuchino.msavaliadorcredito.domain.model;
+package io.github.alinebuchino.msavaliadorcredito.application.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
