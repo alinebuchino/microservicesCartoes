@@ -10,5 +10,5 @@ public class DadosSolicitacaoEmissaoCartao {
     private Long idCartao;
     private String cpf;
     private String endereco;
-    private BigDecimal limiteCartao;
+    private BigDecimal limiteLiberado;
 }

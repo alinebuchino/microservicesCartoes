@@ -1,6 +1,5 @@
 package io.github.alinebuchino.msavaliadorcredito.application;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import feign.FeignException;
 import io.github.alinebuchino.msavaliadorcredito.application.exceptions.DadosClientesNotFoundException;
 import io.github.alinebuchino.msavaliadorcredito.application.exceptions.ErroComunicacaoMicroservicesException;
@@ -86,7 +85,7 @@ public class AvaliadorCreditoService {
 
     public ProtocoloSolicitacaoCartao SolicitarEmissaoCartao(DadosSolicitacaoEmissaoCartao dados){
         try{
-            emissaoCartaoPublisher.SolicitarCartao(dados);
+            emissaoCartaoPublisher.solicitarCartao(dados);
             var protocolo = UUID.randomUUID().toString();
             return new ProtocoloSolicitacaoCartao(protocolo);
         } catch (Exception e){
