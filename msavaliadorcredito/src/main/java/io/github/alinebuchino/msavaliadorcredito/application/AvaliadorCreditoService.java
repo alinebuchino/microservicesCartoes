@@ -1,8 +1,11 @@
 package io.github.alinebuchino.msavaliadorcredito.application;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import feign.FeignException;
 import io.github.alinebuchino.msavaliadorcredito.application.exceptions.DadosClientesNotFoundException;
 import io.github.alinebuchino.msavaliadorcredito.application.exceptions.ErroComunicacaoMicroservicesException;
+import io.github.alinebuchino.msavaliadorcredito.application.exceptions.ErroSolicitacaoCartaoException;
+import io.github.alinebuchino.msavaliadorcredito.application.infra.mqueue.SolicitacaoEmissaoCartaoPublisher;
 import io.github.alinebuchino.msavaliadorcredito.application.model.*;
 import io.github.alinebuchino.msavaliadorcredito.application.infra.clients.CartoesResourceClient;
 import io.github.alinebuchino.msavaliadorcredito.application.infra.clients.ClienteResourceClient;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +25,7 @@ public class AvaliadorCreditoService {
 
     private final ClienteResourceClient clientesClient;
     private final CartoesResourceClient cartoesClient;
+    private final SolicitacaoEmissaoCartaoPublisher emissaoCartaoPublisher;
 
     // obterDadosClientes - msClientes
     // obterCartoesClientes - msCartoes
@@ -76,6 +81,16 @@ public class AvaliadorCreditoService {
                 throw new DadosClientesNotFoundException();
             }
             throw new ErroComunicacaoMicroservicesException(e.getMessage(), status);
+        }
+    }
+
+    public ProtocoloSolicitacaoCartao SolicitarEmissaoCartao(DadosSolicitacaoEmissaoCartao dados){
+        try{
+            emissaoCartaoPublisher.SolicitarCartao(dados);
+            var protocolo = UUID.randomUUID().toString();
+            return new ProtocoloSolicitacaoCartao(protocolo);
+        } catch (Exception e){
+            throw new ErroSolicitacaoCartaoException(e.getMessage());
         }
     }
 }

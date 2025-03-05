@@ -22,23 +22,21 @@ public class EmissaoCartaoSubscriber {
 
     @RabbitListener(queues = "${mq.queues.emissao-cartoes}")
     public void receberSolicitacaoEmissao(@Payload String payload){
-//        try {
-//            var mapper = new ObjectMapper();
-//
-//            DadosSolicitacaoEmissaoCartao dados = mapper.readValue(payload, DadosSolicitacaoEmissaoCartao.class);
-//            Cartao cartao = cartaoRepository.findById(dados.getIdCartao()).orElseThrow();
-//
-//            ClienteCartao clienteCartao = new ClienteCartao();
-//            clienteCartao.setCartao(cartao);
-//            clienteCartao.setCpf(dados.getCpf());
-//            clienteCartao.setLimite(dados.getLimiteLiberado());
-//
-//            clienteCartaoRepository.save(clienteCartao);
-//
-//        }catch (Exception e){
-//            log.error("Erro ao receber solicitacao de emissao de cartao: {} ", e.getMessage());
-//        }
+        try {
+            var mapper = new ObjectMapper();
 
-        System.out.println(payload);
+            DadosSolicitacaoEmissaoCartao dados = mapper.readValue(payload, DadosSolicitacaoEmissaoCartao.class);
+            var cartao = cartaoRepository.findById(dados.getIdCartao()).orElseThrow();
+
+            var clienteCartao = new ClienteCartao();
+            clienteCartao.setCartao(cartao);
+            clienteCartao.setCpf(dados.getCpf());
+            clienteCartao.setLimite(dados.getLimiteLiberado());
+
+            clienteCartaoRepository.save(clienteCartao);
+
+        }catch (Exception e){
+            log.error("Erro ao receber solicitacao de emissao de cartao: {} ", e.getMessage());
+        }
     }
 }
